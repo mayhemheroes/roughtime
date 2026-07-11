@@ -1,0 +1,9 @@
+project: roughtime
+target: fuzz_parse_request
+cmds:
+  - cmd: /mayhem/fuzz_parse_request
+    libfuzzer: true
+    dictionary: /mayhem/mayhem/roughtime.dict
+testsuite:
+  - https://$MAYHEM_DOMAIN/$MAYHEM_PROJECT/$MAYHEM_TARGET/testsuite.tar
+  - file://mayhem/fuzz_parse_request/testsuite

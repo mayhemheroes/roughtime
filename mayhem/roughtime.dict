@@ -1,0 +1,37 @@
+# libFuzzer dictionary for the Roughtime wire protocol (cloudflare/roughtime, package protocol).
+# A Roughtime message is a little-endian framed map of 4-byte ASCII tags -> values. Seeding the
+# 4-byte tag tokens helps the fuzzer hit ParseRequest / VerifyReply tag-dispatch paths faster.
+# libFuzzer-strict: values use only \\ \" \xNN escapes (no \n/\t/\r); comments only on their own line.
+
+# 4-byte message tags
+"CERT"
+"DELE"
+"INDX"
+"MAXT"
+"MIDP"
+"MINT"
+"NONC"
+"PATH"
+"PUBK"
+"RADI"
+"ROOT"
+"SREP"
+"ZZZZ"
+# tags with non-printable bytes (right-padded to 4 bytes)
+"PAD\xff"
+"SIG\x00"
+"SRV\x00"
+"VER\x00"
+
+# version identifiers seen on the wire (draft / google variants)
+"\x00\x00\x00\x80"
+"\x08\x00\x00\x80"
+"\x0b\x00\x00\x80"
+
+# small framing integers (numTags / offsets are little-endian uint32)
+"\x00\x00\x00\x00"
+"\x01\x00\x00\x00"
+"\x02\x00\x00\x00"
+"\x03\x00\x00\x00"
+"\x04\x00\x00\x00"
+"\x05\x00\x00\x00"

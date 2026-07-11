@@ -1,0 +1,3 @@
+# Keep the full repo (including .git history) in the build context — the spec bakes in history.
+# Only prune local build scratch that would bloat the context.
+mayhem-build/
